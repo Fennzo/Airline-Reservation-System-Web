@@ -1,0 +1,4 @@
+JPA
+JPA is an easy way to connect application to databases where no queries writing is needed. Rather it uses annotation to create tables in database
+
+Hibernate implements JPA

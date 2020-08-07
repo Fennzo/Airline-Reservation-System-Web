@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<title>Chrono Airlines</title>
+</head>
+<body>
+<!-- <div th:replace="fragments/navbar :: div.navbar"></div> -->
+<div class = "container">
+		<a type="button" class="btn btn-primary" th:href="@{/admin/allflights/addflight}">Add flight</a>
+	<table class="table table-striped">
+			
+		<thead>
+			<tr>
+	
+				<th scope="col">Flight number</th>
+				<th scope="col">Airline</th>
+				<th scope="col">Origin</th>
+				<th scope="col">Destination</th>
+				<th scope="col">Departure date</th>
+				<th scope="col">Departure time</th>
+				<th scope="col">Arrival date</th>
+				<th scope="col">Arrival time</th>
+				<th scope="col">Flight duration</th>
+				<th scope="col">Price</th>
+
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="item: ${flightlist}">
+				<td th:text="${item.flightNumber}"></td>
+				<td th:text="${item.airline}"></td>
+				<td th:text="${item.origin}"></td>
+				<td th:text="${item.destination}"></td>
+				<td th:text="${#dates.format(item.takeOffDate, 'MM-dd-yyyy')}"></td>
+				<td th:text="${#dates.format(item.takeOffTime, 'HH:mm:aa')}"></td>
+				<td th:text="${#dates.format(item.landingDate, 'MM-dd-yyyy')}"></td>
+				<td th:text="${#dates.format(item.landingTime, 'MM-dd-yyyy')}"></td>
+				<td th:text="${item.flightDuration}"></td>
+				<td th:text="${item.price}"></td>
+				<td><a type="button" class="btn btn-primary" th:href="@{/admin/allflights/deleteFlight(flightnumber=${item.flightNumber})}">Delete</a></td>
+				<td><a type="button" class="btn btn-secondary" th:href="@{/admin/allflights/updateFlight(flightnumber=${item.flightNumber})}">Update</a></td>
+				</tr>
+
+		</tbody>
+
+	</table>
+</div>
+</body>
+</html>

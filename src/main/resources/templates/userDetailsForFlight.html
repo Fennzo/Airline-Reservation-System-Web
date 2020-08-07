@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+<body>
+	<div class="container">
+			<h2>Flight details</h2>
+			
+		<form action="#" th:action="@{/submitflightdetails}"
+			th:object="${bookFlightUserDetails}" method="post">
+			
+			<div class = "row">
+			<div class="col-sm-6 form-group">
+				<label> First name: </label> <Input type="text"
+					th:field="*{firstName}" th:required="required" class="form-control" />
+				<p th:if="${#fields.hasErrors('firstName')}"
+					th:errors="*{firstName}" class="alert alert-danger"></p>
+			</div>
+			<div class="col-sm-6 form-group">
+				<label> Last name: </label> <Input type="text"
+					th:field="*{lastName}" th:required="required" class="form-control" />
+				<p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+					class="alert alert-danger"></p>
+			</div>
+			</div>
+			
+			<div class = "row">
+			<div class="col-sm-6 form-group">
+				<label>Email: </label> <Input type="text" th:field="*{email}"
+					th:required="required" class="form-control" />
+					<p th:if="${#fields.hasErrors('email')}"
+					th:errors="*{email}" class="alert alert-danger"></p>
+			</div>
+			<div class="col-sm-6 form-group">
+				<label>Passport number: </label> <Input type="text"
+					th:field="*{passportNumber}" th:required="required" class="form-control"/>
+					<p th:if="${#fields.hasErrors('passportNumber')}"
+					th:errors="*{passportNumber}" class="alert alert-danger"></p>
+			</div>
+			</div>
+			
+			<div class = "row">
+			<div class="col-sm-6 form-group">
+				<label>Address: </label> <Input type="text" th:field="*{address}"
+					th:required="required" class="form-control"/>
+					<p th:if="${#fields.hasErrors('address')}"
+					th:errors="*{address}" class="alert alert-danger"></p>
+			</div>
+			<div class="col-sm-6 form-group">
+				<label>Phone number: </label> <Input type="text"
+					th:field="*{phoneNumber}" th:required="required" class="form-control"/>
+					<p th:if="${#fields.hasErrors('phoneNumber')}"
+					th:errors="*{phoneNumber}" class="alert alert-danger"></p>
+			</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary btn-block mt-3">Next</button>
+		</form>
+	</div>
+</body>
+</html>

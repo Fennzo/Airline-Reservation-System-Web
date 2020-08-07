@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+ <script src="html-duration-picker.min.js"></script>
+        </body>
+	
+<body>
+	<div class="container">
+			<h2>Update flight</h2>
+			
+		<form action="#" th:action="@{/admin/allflights/updateflight}"
+			th:object="${updateFlightObj}" method="post">
+			
+			<div class = "row">
+			<div class="col-sm-6 form-group">
+				<label> Flight number: </label> <Input type="text"
+					th:field="*{flightNumber}" th:required="required" class="form-control" />
+				<p th:if="${#fields.hasErrors('flightNumber')}"
+					th:errors="*{flightNumber}" class="alert alert-danger"></p>
+			</div>
+			
+			</div>
+			
+			<div class = "row">
+			<div class="col-sm-6 form-group">
+				<label> Origin: </label> <Input type="text"
+					th:field="*{origin}" th:required="required" class="form-control" />
+				<p th:if="${#fields.hasErrors('origin')}" th:errors="*{origin}"
+					class="alert alert-danger"></p>
+			</div>
+			<div class="col-sm-6 form-group">
+				<label> Destination: </label> <Input type="text" th:field="*{destination}"
+					th:required="required" class="form-control" />
+					<p th:if="${#fields.hasErrors('destination')}"
+					th:errors="*{destination}" class="alert alert-danger"></p>
+			</div>
+			</div>
+			
+			<div class = "row">
+				<div class="col-sm-6 form-group">
+				<label> Take off time: </label> <Input type="time"
+					th:field="*{takeOffTime}" th:required="required" class="form-control"/>
+					<p th:if="${#fields.hasErrors('takeOffTime')}"
+					th:errors="*{takeOffTime}" class="alert alert-danger"></p>
+			</div>
+			<div class="col-sm-6 form-group">
+				<label> Landing time: </label> <Input type="time" th:field="*{landingTime}"
+					th:required="required" class="form-control"/>
+					<p th:if="${#fields.hasErrors('landingTime')}"
+					th:errors="*{landingTime}" class="alert alert-danger"></p>
+			</div>
+			</div>
+			
+			<div class = "row">
+				<div class="col-sm-6 form-group">
+				<label> Departure date: </label> <Input type="date" class="date-input"
+					th:field="*{takeOffDate}" />
+					<p th:if="${#fields.hasErrors('takeOffDate')}"
+					th:errors="*{takeOffDate}" class="alert alert-danger"></p>
+			</div>
+			<div class="col-sm-6 form-group">
+				<label> Return date: </label> <Input type="date" class="date-input"
+					th:field="*{landingDate}" />
+					<p th:if="${#fields.hasErrors('landingDate')}"
+					th:errors="*{landingDate}" class="alert alert-danger"></p>
+			</div>
+			</div>
+			
+			<div class = "row">
+			<div class="col-sm-6 form-group">
+				<label> Airline: </label> <Input type="text"
+					th:field="*{airline}" th:required="required" class="form-control" />
+				<p th:if="${#fields.hasErrors('airline')}"
+					th:errors="*{airline}" class="alert alert-danger"></p>
+			</div>
+			<div class="col-sm-6 form-group">
+				<label> Price: </label> <Input type="text"
+					th:field="*{price}" th:required="required" class="form-control" />
+				<p th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
+					class="alert alert-danger"></p>
+			</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary btn-block mt-3">Update</button>
+		</form>
+	</div>
+</body>
+</html>

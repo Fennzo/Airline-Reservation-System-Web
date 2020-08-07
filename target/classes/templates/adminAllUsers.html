@@ -1,0 +1,48 @@
+2<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<title>Enter title</title>
+</head>
+<body>
+<!-- <div th:replace="fragments/navbar :: div.navbar"></div> -->
+<div class = "container">
+	<table class="table table-striped">
+			
+		<thead>
+			<tr>
+	
+				<th scope="col">First name</th>
+				<th scope="col">Last name</th>
+				<th scope="col">Passport number</th>
+				<th scope="col">Address</th>
+				<th scope="col">Phone number</th>
+				<th scope="col">Upcoming booked flights</th>
+				<th scope="col">Revenue</th>
+
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="item, iter: ${userList}">
+				<td th:text="${item.id}"></td>
+				<td th:text="${item.firstName}"></td>
+				<td th:text="${item.lastName}"></td>
+				<td th:text="${item.passportNumber}"></td>
+				<td th:text="${item.address}"></td>
+				<td th:text="${item.phoneNumber}"></td>
+				<td th:text="${item.email}"></td>
+				<td th:text="${item.role}"></td>
+				<td><a type="button" class="btn btn-primary" th:href="@{/admin/allflights/deleteFlight(flightnumber=${item.flightNumber})}">Select</a></td>
+				</tr>
+
+		</tbody>
+
+	</table>
+</div>
+</body>
+</html>
