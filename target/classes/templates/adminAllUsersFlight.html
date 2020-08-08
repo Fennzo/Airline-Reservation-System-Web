@@ -1,14 +1,15 @@
 <div th:replace="fragments/head :: head"></div>
-<title>Admin welcome</title>
+<title>Admin all users flight</title>
 </head>
 <body>
 <div th:replace="fragments/navbar :: navigation"></div>
 <div class = "container">
+		<a type="button" class="btn btn-primary" th:href="@{/admin/allflights/addflight}">Add flight</a>
 	<table class="table table-striped">
-
+			
 		<thead>
 			<tr>
-
+	
 				<th scope="col">Flight number</th>
 				<th scope="col">Airline</th>
 				<th scope="col">Origin</th>
@@ -19,32 +20,29 @@
 				<th scope="col">Arrival time</th>
 				<th scope="col">Flight duration</th>
 				<th scope="col">Price</th>
+
 			</tr>
 		</thead>
 
 		<tbody>
-			<tr th:each="item,iter:${flightlist}">
+			<tr th:each="item: ${flightListForUser}">
 				<td th:text="${item.flightNumber}"></td>
 				<td th:text="${item.airline}"></td>
 				<td th:text="${item.origin}"></td>
 				<td th:text="${item.destination}"></td>
 				<td th:text="${#dates.format(item.takeOffDate, 'MM-dd-yyyy')}"></td>
-				<td th:text="${item.takeOffTime}"></td>
+				<td th:text="${#dates.format(item.takeOffTime, 'HH:mm:aa')}"></td>
 				<td th:text="${#dates.format(item.landingDate, 'MM-dd-yyyy')}"></td>
-				<td th:text="${item.landingTime}"></td>
+				<td th:text="${#dates.format(item.landingTime, 'HH:mm:aa')}"></td>
 				<td th:text="${item.flightDuration}"></td>
 				<td th:text="${item.price}"></td>
-				<td><a th:if="${iterStat.even}"
-           type="button"
-           class="btn btn-primary"
-           th:href="@{/addUserFlight(id=${item.flightNumber})}">Select</a></td>
-			           <!-- Need to add the previous flight as well -->
-			</tr>
+				<td><a type="button" class="btn btn-primary" th:href="@{/admin/allflights/deleteFlight(flightnumber=${item.flightNumber})}">Delete</a></td>
+				<td><a type="button" class="btn btn-secondary" th:href="@{/admin/allflights/updateFlight(flightnumber=${item.flightNumber})}">Update</a></td>
+				</tr>
 
 		</tbody>
 
 	</table>
 </div>
-
 </body>
 </html>

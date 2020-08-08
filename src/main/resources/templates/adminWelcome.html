@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="ISO-8859-1">
-<title>Admin panel</title>
+<div th:replace="fragments/head :: head"></div>
+<title>Admin welcome</title>
 </head>
 <body>
-
+<div th:replace="fragments/navbar :: navigation"></div>
 <a type="button" class="btn btn-primary" th:href="@{/admin/allflights}">Show all flights</a>
 <a type="button" class="btn btn-primary" th:href="@{/admin/allusers}">Show all users</a>
 </body>

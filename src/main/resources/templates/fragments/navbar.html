@@ -1,0 +1,22 @@
+
+<div th:fragment="navigation">
+	<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
+	<div class="container">
+				<a class="navbar-brand" href="/">Chrono Airlines</a>
+				
+				<ul class="nav navbar-nav navbar-left">
+				<li sec:authorize="!isAuthenticated()" class="nav-item"><a
+						class="btn btn-outline-light" th:href="@{/}">Home</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-right">
+				<li sec:authorize="isAuthenticated()" class="nav-item"><a
+						class="btn btn-outline-light" th:href="@{/user/profile}">Profile</a></li>
+					<li sec:authorize="!isAuthenticated()" class="nav-item"><a
+						class="btn btn-outline-light" th:href="@{/login}">Login</a></li>
+					<li sec:authorize="isAuthenticated()" class="nav-item"><a
+						class="btn btn-outline-light" th:href="@{/logout}">Logout</a></li>
+				</ul>
+		</div>
+	</nav>
+</div>	

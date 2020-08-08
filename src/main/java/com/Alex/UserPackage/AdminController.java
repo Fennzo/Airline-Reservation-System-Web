@@ -28,21 +28,26 @@ public class AdminController {
 
 	@RequestMapping(value = "/admin/allflights/addflight", method = RequestMethod.GET)
 	public String adminAddFlight(ModelMap model) {
-		model.addAttribute("userRegistration", new Flights());
-		return "addFlight";
+		model.addAttribute("adminNewFlight", new Flights());
+		return "adminAddFlight";
 	}
 
-	@RequestMapping(value = "/admin/allflights/addFlight", method = RequestMethod.POST)
-	public String submitFlightAddition(@ModelAttribute("newFlight") @Valid Flights flight, BindingResult result,
+	@RequestMapping(value = "/admin/allflights/addflight", method = RequestMethod.POST)
+	public String adminSubmitAddFlight(@ModelAttribute("adminNewFlight") @Valid Flights flight, BindingResult result,
 			ModelMap model) {
 		if (result.hasErrors()) {
 			System.out.println("Admin add flight error: " + result.getFieldError());
 			return "addFlight";
 		}
-		flight.setPrice("$" + flight.getPrice());
+		if (!flight.getPrice().contains("$")) {
+			flight.setPrice("$" + flight.getPrice());
+		}
+		String duration = flightsService.getDuration(flight.getTakeOffTime(), flight.getLandingTime());
+		flight.setFlightDuration(duration);
 		flightsService.addFLights(flight);
+		System.out.println("Admin new flight added: " + flight);
 		model.clear();
-		return "redirect:admin/allflights";
+		return "redirect:/admin/allflights";
 	}
 
 	@RequestMapping(value = "/admin/allflights/updateFlight", method = RequestMethod.GET)
@@ -74,12 +79,18 @@ public class AdminController {
 		model.addAttribute("userList", userService.retrieveAllUsers());
 		return "adminAllUsers";
 	}
+	@RequestMapping(value = "/admin/allusers/delete")
+	public String adminDeleteUser(ModelMap model, @RequestParam(value = "id", required = true) long id) {
+		userService.deleteUser(id);
+		System.out.println("User " + id + " deleted");
+		model.clear();
+		return "adminAllUsers";
+	}
 	
 	@RequestMapping(value = "/admin/allusers/flight")
 	public String adminUserMoreInfo(ModelMap model, @RequestParam(value = "userId", required = true) long userId) {
-
 		model.addAttribute("flightListForUser", flightsService.retrieveAllFlightsUnderUser(userId));
-		return "adminUserFlight";
+		return "adminAllUsersFlight";
 	}
 
 	// Show all flights for admin

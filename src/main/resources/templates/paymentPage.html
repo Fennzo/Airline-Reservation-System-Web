@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<div th:replace="fragments/head :: head"></div>
+<title>Flight confirmation</title>
 </head>
 <body>
-	<h2>Billing details</h2>
+	<div th:replace="fragments/navbar :: navigation"></div>
+	<h2>Flight passsenger information</h2>
+	<tr th:each="var : ${confirmUserDetails}">
+		<td th:text="${obj.firstName}">First name</td>
+		<td th:text="${obj.lastName}">Last name</td>
+		<td th:text="${obj.passportNumber}">Passport number</td>
+		<td th:text="${obj.address}">Email</td>
+		<td th:text="${obj.phoneNumber}">Phone number</td>
+	</tr>
 
+	<h2>Payment information</h2>
+	<form action="#" th:action="@{/paymentsuccess}"
+		th:object="${paymentInfo}" method="post">
+		
+		<div class="col-lg-3" th:object="${test}">
+    <select class="form-control" id="testOrder" name="testOrder">
+        <option value="">Select Test Order</option>
+        <option th:each="mm : ${mmList}"
+                th:value="${test.testCode}"
+                th:text="${test.testCode}+' : '+${test.testName}"></option>
+    </select>
+</div>
+		
+		</form>
 </body>
-</html>x
+</html>
+x
