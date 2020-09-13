@@ -1,3 +1,12 @@
 # Airline-Reservation-System-Web
 
-In development! About 80% done :)
+User functions
+- Book flight
+- Save flight to account
+- Retrieve flight
+- Delete flight
+
+Admin functions
+- Manager user accounts
+- Create flight
+- Check billable
